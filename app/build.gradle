@@ -28,6 +28,8 @@ android {
 repositories {
     // For ActivityStarter
     maven { url 'https://jitpack.io' }
+    // For TextDrawable
+    maven { url 'http://dl.bintray.com/amulyakhare/maven' }
 }
 
 dependencies {
@@ -44,6 +46,11 @@ dependencies {
     compile "com.amulyakhare:com.amulyakhare.textdrawable:$rootProject.ext.textdrawable_version"
     compile "com.github.marcinmoskala.activitystarter:activitystarter:$rootProject.ext.activitystarter_version"
     annotationProcessor "com.github.marcinmoskala.activitystarter:activitystarter-compiler:$rootProject.ext.activitystarter_version"
+    compile "com.lucasurbas:listitemview:$rootProject.ext.listitemview_version"
+    compile("com.mikepenz:fastadapter:$rootProject.ext.fastadapter_version") {
+        transitive = true
+    }
+    compile "com.mikepenz:fastadapter-commons:$rootProject.ext.fastadapter_version"
 
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanary_version"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanary_version"

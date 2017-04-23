@@ -3,21 +3,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/mnuAlumnado"
-            android:icon="@drawable/ic_person_black_24dp"
-            android:title="@string/activity_main_menu_alumnado" />
+            android:id="@+id/mnuNewVisit"
+            android:icon="@drawable/ic_note_add_black_24dp"
+            android:title="@string/activity_main_menu_new_visit" />
         <item
-            android:id="@+id/mnuEmpresas"
+            android:id="@+id/mnuNextVisits"
+            android:icon="@drawable/ic_schedule_black_24dp"
+            android:title="@string/activity_main_menu_next_visits" />
+        <item
+            android:id="@+id/mnuStudents"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/activity_main_menu_students" />
+        <item
+            android:id="@+id/mnuCompanies"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/activity_main_menu_empresas" />
+            android:title="@string/activity_main_menu_companies" />
     </group>
 
-    <item android:title="Otras opciones">
+    <item android:title="@string/other_options">
         <menu>
             <item
-                android:id="@+id/mnuPreferencias"
+                android:id="@+id/mnuPreferences"
                 android:icon="@drawable/ic_settings_black_24dp"
-                android:title="@string/activity_main_menu_preferencias" />
+                android:title="@string/activity_main_menu_preferences" />
         </menu>
     </item>
 

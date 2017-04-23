@@ -2,7 +2,7 @@
 <project version="4">
   <component name="FindBugs-IDEA">
     <excludeFilterFiles>
-      <filter file="$PROJECT_DIR$/../studio/findbugs-android-exclude.xml" enabled="true" />
+      <filter file="$USER_HOME$/studio/findbugs-android-exclude.xml" enabled="true" />
     </excludeFilterFiles>
   </component>
 </project>
