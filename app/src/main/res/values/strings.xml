@@ -150,9 +150,15 @@
         FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+
+
     <string name="activity_main_menu_new_visit">New visit</string>
     <string name="activity_main_menu_next_visits">Next visits</string>
     <string name="other_options">Other options</string>
     <string name="activity_student_new_student">New student</string>
     <string name="activity_student_update_student">Update student</string>
+    <string name="fragment_students_item_menu_visits">Visits</string>
+    <string name="fragment_students_item_menu_call">Call</string>
+    <string name="fragment_students_no_phonenumber">No phonenumber available for student</string>
 </resources>

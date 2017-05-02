@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import java.util.Arrays;
@@ -28,9 +26,10 @@ import es.iessaladillo.pedrojoya.fct.components.MessageManager.ToastMessageManag
 import es.iessaladillo.pedrojoya.fct.model.entities.Student;
 import es.iessaladillo.pedrojoya.fct.student.StudentActivityStarter;
 import es.iessaladillo.pedrojoya.fct.utils.FabUtils;
+import es.iessaladillo.pedrojoya.fct.utils.IntentUtils;
 
 public class StudentsFragment extends Fragment implements FabUtils.OnFabClickListener,
-        StudentsContract.View {
+        StudentsContract.View, StudentsFragmentItem.Callback {
 
     @Arg
     @Optional
@@ -86,16 +85,17 @@ public class StudentsFragment extends Fragment implements FabUtils.OnFabClickLis
         lstStudents.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new FastItemAdapter();
         mAdapter.withSelectable(true);
-        mAdapter.withOnClickListener(new FastAdapter.OnClickListener<StudentsFragmentItem>() {
-            @Override
-            public boolean onClick(View v, IAdapter<StudentsFragmentItem> adapter,
-                    StudentsFragmentItem item, int position) {
-                mPresenter.doOnItemClick(item.getStudent());
-                return true;
-            }
+        mAdapter.withOnClickListener((v, adapter, item, position) -> {
+            mPresenter.doOnItemClick(item.getStudent());
+            return true;
         });
-
         mEmptyObserver = new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                checkAdapterIsEmpty();
+            }
+
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
@@ -112,8 +112,8 @@ public class StudentsFragment extends Fragment implements FabUtils.OnFabClickLis
         lstStudents.setAdapter(mAdapter);
         // TODO
         mAdapter.add(Arrays.asList(
-                new StudentsFragmentItem(new Student("Baldomero", "Llegate " + "Ligero")),
-                new StudentsFragmentItem(new Student("Dolores", "Fuertes de " + "Barriga"))));
+                new StudentsFragmentItem(new Student("Baldomero", "Llegate " + "Ligero"), this),
+                new StudentsFragmentItem(new Student("Dolores", "Fuertes de " + "Barriga"), this)));
         lstStudents.setAdapter(mAdapter);
     }
 
@@ -149,6 +149,32 @@ public class StudentsFragment extends Fragment implements FabUtils.OnFabClickLis
     public void navigateToStudentActivity(Student student) {
         StudentActivityStarter.start(getActivity(),
                 getString(R.string.activity_student_update_student), student);
+    }
+
+    @Override
+    public void navigateToDialActivity(String phonenumber) {
+        startActivity(IntentUtils.getDialIntent(phonenumber));
+    }
+
+    @Override
+    public void navigateToVisitsActivity(Student student) {
+        // TODO
+    }
+
+    @Override
+    public void showErrorNoPhonenumber() {
+        mMessageManager.showMessage(lstStudents, getString(R.string
+                .fragment_students_no_phonenumber));
+    }
+
+    @Override
+    public void onVisitsMenuItemClick(Student student) {
+        mPresenter.doOnItemVisitsClick(student);
+    }
+
+    @Override
+    public void onCallMenuItemClick(Student student) {
+        mPresenter.doOnItemCallClick(student);
     }
 
 }

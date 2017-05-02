@@ -1,5 +1,7 @@
 package es.iessaladillo.pedrojoya.fct.students;
 
+import android.text.TextUtils;
+
 import es.iessaladillo.pedrojoya.fct.model.entities.Student;
 
 class StudentsPresenter implements StudentsContract.Presenter {
@@ -17,10 +19,6 @@ class StudentsPresenter implements StudentsContract.Presenter {
 
     @Override
     public void onViewDetach() {
-    }
-
-    @Override
-    public void onDestroy() {
         mView = new StudentsContract.View() {
             @Override
             public void navigateToStudentActivity() {
@@ -30,7 +28,26 @@ class StudentsPresenter implements StudentsContract.Presenter {
             public void navigateToStudentActivity(Student student) {
 
             }
+
+            @Override
+            public void navigateToDialActivity(String phonenumber) {
+
+            }
+
+            @Override
+            public void navigateToVisitsActivity(Student student) {
+
+            }
+
+            @Override
+            public void showErrorNoPhonenumber() {
+
+            }
         };
+    }
+
+    @Override
+    public void onDestroy() {
     }
 
     @Override
@@ -46,6 +63,20 @@ class StudentsPresenter implements StudentsContract.Presenter {
     @Override
     public void doOnItemClick(Student student) {
         mView.navigateToStudentActivity(student);
+    }
+
+    @Override
+    public void doOnItemCallClick(Student student) {
+        if (!TextUtils.isEmpty(student.getPhonenumber())) {
+            mView.navigateToDialActivity(student.getPhonenumber());
+        } else {
+            mView.showErrorNoPhonenumber();
+        }
+    }
+
+    @Override
+    public void doOnItemVisitsClick(Student student) {
+        mView.navigateToVisitsActivity(student);
     }
 
 }

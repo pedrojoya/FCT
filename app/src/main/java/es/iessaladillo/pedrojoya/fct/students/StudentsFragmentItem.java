@@ -1,6 +1,8 @@
 package es.iessaladillo.pedrojoya.fct.students;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.lucasurbas.listitemview.ListItemView;
@@ -16,10 +18,12 @@ import es.iessaladillo.pedrojoya.fct.model.entities.Student;
 public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, StudentsFragmentItem
         .ViewHolder> {
 
+    private final Callback mListener;
     private Student mStudent;
 
-    public StudentsFragmentItem(Student student) {
+    public StudentsFragmentItem(Student student, @NonNull Callback listener) {
         this.mStudent = student;
+        mListener = listener;
     }
 
     public Student getStudent() {
@@ -53,7 +57,7 @@ public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, Stu
         return new ViewHolder(v);
     }
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
+    protected class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.list_item_view)
         ListItemView listItemView;
@@ -66,6 +70,16 @@ public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, Stu
         public void bind(Student student) {
             listItemView.setTitle(student.getSirname());
             listItemView.setSubtitle(student.getFirstname());
+            listItemView.setOnMenuItemClickListener(new ListItemView.OnMenuItemClickListener() {
+                @Override
+                public void onActionMenuItemSelected(MenuItem item) {
+                    if (item.getItemId() == R.id.mnuVisits) {
+                        mListener.onVisitsMenuItemClick(student);
+                    } else if (item.getItemId() == R.id.mnuCall) {
+                        mListener.onCallMenuItemClick(student);
+                    }
+                }
+            });
         }
 
         public void unBind() {
@@ -74,5 +88,11 @@ public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, Stu
         }
 
     }
+
+    interface Callback {
+        void onVisitsMenuItemClick(Student student);
+        void onCallMenuItemClick(Student student);
+    }
+
 
 }

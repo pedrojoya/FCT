@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnuVisits"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="@string/fragment_students_item_menu_visits"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mnuCall"
+        android:title="@string/fragment_students_item_menu_call"
+        app:showAsAction="never" />
+</menu>
