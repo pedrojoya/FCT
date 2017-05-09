@@ -44,9 +44,10 @@ public class Student implements Parcelable {
     }
 
     // TODO
-    public Student(String firstname, String sirname) {
+    public Student(String firstname, String sirname, String phonenumber) {
         this.firstname = firstname;
         this.sirname = sirname;
+        this.phonenumber = phonenumber;
     }
 
     @Override

@@ -10,4 +10,4 @@
     app:liv_icon="@drawable/ic_person_black_24dp"
     app:liv_multiline="false"
     app:liv_menu="@menu/fragment_students_item_menu"
-    app:liv_displayMode="circularIcon"/>
+    app:liv_displayMode="avatar"/>

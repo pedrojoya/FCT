@@ -12,8 +12,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.iessaladillo.pedrojoya.fct.App;
 import es.iessaladillo.pedrojoya.fct.R;
 import es.iessaladillo.pedrojoya.fct.model.entities.Student;
+import es.iessaladillo.pedrojoya.fct.utils.TextDrawableUtils;
 
 public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, StudentsFragmentItem
         .ViewHolder> {
@@ -70,6 +72,10 @@ public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, Stu
         public void bind(Student student) {
             listItemView.setTitle(student.getSirname());
             listItemView.setSubtitle(student.getFirstname());
+            // TODO Use student id for color selection.
+            listItemView.getAvatarView().setImageDrawable(
+                    TextDrawableUtils.getDrawable(App.getTextDrawableBuilder(),
+                            student.getFirstname(), student.getFirstname()));
             listItemView.setOnMenuItemClickListener(new ListItemView.OnMenuItemClickListener() {
                 @Override
                 public void onActionMenuItemSelected(MenuItem item) {
@@ -91,6 +97,7 @@ public class StudentsFragmentItem extends AbstractItem<StudentsFragmentItem, Stu
 
     interface Callback {
         void onVisitsMenuItemClick(Student student);
+
         void onCallMenuItemClick(Student student);
     }
 

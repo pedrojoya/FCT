@@ -112,8 +112,10 @@ public class StudentsFragment extends Fragment implements FabUtils.OnFabClickLis
         lstStudents.setAdapter(mAdapter);
         // TODO
         mAdapter.add(Arrays.asList(
-                new StudentsFragmentItem(new Student("Baldomero", "Llegate " + "Ligero"), this),
-                new StudentsFragmentItem(new Student("Dolores", "Fuertes de " + "Barriga"), this)));
+                new StudentsFragmentItem(new Student("Baldomero", "Llegate Ligero", "666666666"), this),
+                new StudentsFragmentItem(new Student("Dolores", "Fuertes de Barriga",
+                        "666666666"),
+                        this)));
         lstStudents.setAdapter(mAdapter);
     }
 
